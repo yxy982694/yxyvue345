@@ -7,6 +7,8 @@ import 'common/stylus/index.styl'
 import fastclick from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './swiper/dist/css/swiper.css'
+import Axios from 'axios'
+Vue.prototype.$axios = Axios
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 fastclick.attach(document.body)
