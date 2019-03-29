@@ -26,11 +26,15 @@
           </ul>
         </div>
       </div>
+      <div class="loading-container" v-show="!discList.length">
+        <loading :title='title'></loading>
+      </div>
     </scroll>
   </div>
 </template>
 <script type="text/ecmascript-6">
 import Slider from 'base/slider/slider'
+import Loading from 'base/loading/loading'
 import Scroll from 'base/scroll/scroll'
 import { getRecommend } from 'api/recommend'
 import {ERR_OK} from 'api/config'
@@ -38,16 +42,20 @@ export default {
   data () {
     return {
       recommends: [],
-      discList: []
+      discList: [],
+      title: '我是张三，你是谁啊，加载中'
     }
   },
   components: {
     Slider,
-    Scroll
+    Scroll,
+    Loading
   },
   created () {
     this._getRecommend()
-    this._getDiscList()
+    setTimeout(() => {
+      this._getDiscList()
+    }, 2000)
   },
   methods: {
     _getRecommend () {
