@@ -92,7 +92,7 @@ export default {
     top: 88px
     bottom: 0
     .recommend-content
-      height: 100%
+      height: 3000px
       overflow: hidden
       .slider-wrapper
         position: relative

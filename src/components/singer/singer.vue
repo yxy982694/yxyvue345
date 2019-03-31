@@ -68,7 +68,7 @@ export default {
           hot.push(val)
         }
       }
-      ret.sort((a, b) => {
+      ret.sort((a, b) => { // 对数组进行升序排列
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
       return hot.concat(ret)
