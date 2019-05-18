@@ -1,6 +1,7 @@
 <template>
-  <div class="singer">
-    <list-view :data="singers"></list-view>
+  <div class="singer" ref="singer">
+    <list-view :data="singers" @select="selectSinger" ref="list"></list-view>
+    <router-view/>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -8,9 +9,12 @@ import { getSingerList } from 'api/singer'
 import Singer from 'common/js/singer'
 import {ERR_OK} from 'api/config'
 import listView from 'base/listview/listview'
+import { mapMutations } from 'vuex'
+import { playListMixin } from 'common/js/mixin.js'
 const HOT_NAME = '热门'
 const HOT_SINGER_LEN = 10
 export default {
+  mixins: [playListMixin],
   data () {
     return {
       singers: []
@@ -23,11 +27,22 @@ export default {
     this._getSingerList()
   },
   methods: {
+    handlePlayList (playList) {
+      const bottom = playList.length > 0 ? '60px' : ''
+      this.$refs.singer.style.bottom = bottom
+      this.$refs.list.refresh()
+    },
+    selectSinger (singer) {
+      this.$router.push({
+        path: `/singer/${singer.id}`
+      })
+      this.setSinger(singer)
+    },
     _getSingerList () {
       getSingerList().then((res) => {
         if (res.code === ERR_OK) {
           this.singers = this._normalizeSinger(res.data.list)
-          console.log(this._normalizeSinger(res.data.list))
+          // console.log(this._normalizeSinger(res.data.list))
         }
       })
     },
@@ -72,7 +87,10 @@ export default {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
       return hot.concat(ret)
-    }
+    },
+    ...mapMutations({
+      setSinger: 'SET_SINGER'
+    })
   }
 }
 </script>

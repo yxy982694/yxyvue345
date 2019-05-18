@@ -22,6 +22,22 @@ export default {
     listenScroll: { // 让我们的scroll要不要监听滚动事件
       type: Boolean,
       default: false
+    },
+    pullup: {
+      type: Boolean,
+      default: false
+    },
+    pulldown: {
+      type: Boolean,
+      default: false
+    },
+    beforeScroll: { // 是否监听开始滚动事件
+      type: Boolean,
+      default: false
+    },
+    time: {
+      type: Number,
+      default: 20
     }
   },
   mounted () {
@@ -45,6 +61,25 @@ export default {
           // console.log(pos)
         })
       }
+      if (this.pullup) {
+        this.scroll.on('scrollEnd', () => {
+          if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+            this.$emit('scrollToEnd')
+          }
+        })
+      }
+      if (this.pulldown) {
+        this.scroll.on('scrollEnd', () => {
+          if (this.scroll.y > 0) {
+            this.$emit('scrollToDown')
+          }
+        })
+      }
+      if (this.beforeScroll) {
+        this.scroll.on('beforeScrollStart', () => {
+          this.$emit('startScroll')
+        })
+      }
     },
     enable () {
       this.scroll && this.scroll.enable()
@@ -53,6 +88,7 @@ export default {
       this.scroll && this.scroll.disable()
     },
     refresh () {
+      // alert('我刷新了')
       this.scroll && this.scroll.refresh()
     },
     scrollTo () {
@@ -63,10 +99,12 @@ export default {
     }
   },
   watch: {
-    data () {
+    data (newdata) {
+      // console.log(newdata)
       setTimeout(() => {
         this.refresh()
-      }, 20)
+        // alert('数据变了')
+      }, this.time)
     }
   }
 }

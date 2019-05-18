@@ -9,6 +9,10 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './swiper/dist/css/swiper.css'
 import Axios from 'axios'
 import VueLazyload from 'vue-lazyload'
+import Vuex from 'vuex'
+import CreateStore from './store/index.js'
+Vue.use(Vuex)
+const store = CreateStore()
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,
@@ -25,6 +29,7 @@ fastclick.attach(document.body)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

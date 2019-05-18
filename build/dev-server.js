@@ -1,10 +1,5 @@
-require('./check-versions')()
 
 var config = require('../config')
-if (!process.env.NODE_ENV) {
-  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
-}
-
 var opn = require('opn')
 var path = require('path')
 var express = require('express')
@@ -24,6 +19,19 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 
 var apiRoutes = express.Router()
+// 判断是否是开发环境
+const isDev=process.env.NODE_ENV==='development'
+
+require('./check-versions')()
+new webpack.DefinePlugin({
+  'process.env':{
+    NODE_ENV:isDev?'"development"':'"production"'
+  }
+})
+
+// if (!process.env.NODE_ENV) {
+//   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
+// }
 
 apiRoutes.get('/getDiscList', function (req, res) {
   var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
