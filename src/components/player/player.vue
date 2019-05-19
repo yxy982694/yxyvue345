@@ -476,9 +476,10 @@ export default {
         this.currentLineNum = 0
       }
       clearTimeout(this.timer)
+      let that = this
       this.timer = setTimeout(function () {
-        this.$refs.audio.play() // 在歌曲改变时，此次歌曲开始播放
-        this._getLyric() // 在歌曲改变时，获取此次歌曲的歌词
+        that.$refs.audio.play() // 在歌曲改变时，此次歌曲开始播放
+        that._getLyric() // 在歌曲改变时，获取此次歌曲的歌词
       }, 1000)
       // this.$nextTick(() => {
       //   this.$refs.audio.play() // 在歌曲改变时，此次歌曲开始播放
