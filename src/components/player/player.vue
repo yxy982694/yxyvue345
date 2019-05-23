@@ -273,6 +273,7 @@ export default {
         return
         // this.songReady = false
       }
+      alert('下一曲')
       let index = this.currentIndex + 1
       if (index === this.playList.length) {
         index = 0
@@ -282,7 +283,7 @@ export default {
       if (!this.playing) {
         this.togglePlaying()
       }
-      this.songReady = false
+      // this.songReady = false
     },
     ready () { // canplay事件的回调函数
       console.log('准备就绪')
