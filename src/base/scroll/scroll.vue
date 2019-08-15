@@ -87,6 +87,9 @@ export default {
     disable () {
       this.scroll && this.scroll.disable()
     },
+    destroy () {
+      this.scroll && this.scroll.destroy()
+    },
     refresh () {
       // alert('我刷新了')
       this.scroll && this.scroll.refresh()

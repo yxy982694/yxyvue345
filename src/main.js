@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
+import createRouter from './router'
 import 'common/stylus/index.styl'
 import fastclick from 'fastclick'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
@@ -13,7 +13,25 @@ import Vuex from 'vuex'
 import CreateStore from './store/index.js'
 Vue.use(Vuex)
 const store = CreateStore()
-
+const router = createRouter()
+// 跳转前1
+// router.beforeEach((to, from, next) => {
+//   console.log(to)
+//   if (to.fullPath === '/singer') {
+//     next('/usercenter/123')
+//   } else {
+//     next()
+//   }
+// })
+// 跳转中4
+// router.beforeResolve((to, from, next) => {
+//   console.log(from)
+//   next()
+// })
+// 跳转后5
+// router.afterEach((to, from) => {
+//   console.log(to)
+// })
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: 'dist/error.png',

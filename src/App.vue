@@ -3,9 +3,13 @@
     <m-header></m-header>
     <tab></tab>
     <keep-alive>
-      <router-view/>
+      <transition name="fade">
+        <router-view/>
+        <!-- <router-view name="a" /> -->
+      </transition>
     </keep-alive>
     <player></player>
+    <!-- <router-view name="a" /> -->
   </div>
 </template>
 
@@ -23,4 +27,8 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  .fade-enter-active, .fade-leave-active
+    transition: opacity .5s
+  .fade-enter, .fade-leave-to
+    opacity: 0
 </style>

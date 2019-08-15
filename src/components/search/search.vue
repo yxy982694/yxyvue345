@@ -31,6 +31,7 @@
     </div>
     <confirm text="是否清空所有搜索历史" confirmBtnText="清空" ref="confirm" @quEvent="clearSearchHistory"></confirm>
     <router-view/>
+    <!-- <user-center :id="3333"></user-center> -->
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -43,6 +44,7 @@ import { mapActions } from 'vuex'
 import SearchHistory from 'base/searchHistory-list/search-history'
 import Confirm from 'base/confirm/confirm'
 import { playListMixin, searchMixin } from 'common/js/mixin.js'
+// import UserCenter from 'components/user-center/user-center'
 export default {
   mixins: [playListMixin, searchMixin],
   data () {
@@ -60,6 +62,7 @@ export default {
     SearchHistory,
     Confirm,
     Scroll
+    // UserCenter
   },
   created () {
     this._getHotKey()

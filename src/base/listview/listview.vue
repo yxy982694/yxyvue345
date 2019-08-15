@@ -46,6 +46,7 @@ export default {
   created () {
     this.touch = {}
     this.listenScroll = true
+    window.console.log(this.data)
   },
   computed: {
     shortcutList () {

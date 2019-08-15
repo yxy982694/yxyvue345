@@ -50,6 +50,21 @@ export default {
       randomArr: []
     }
   },
+  props: ['id'],
+  beforeRouteEnter (to, from, next) {
+    console.log(from)
+    next(vm => {
+      console.log('vm.id:' + vm.id)
+    })
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log('fff')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log(this.id)
+    next()
+  },
   computed: {
     ...mapGetters(['playHistory', 'shoucangList'])
   },

@@ -43,6 +43,27 @@ import { playListMixin } from 'common/js/mixin.js'
 import { mapMutations } from 'vuex'
 export default {
   mixins: [playListMixin],
+  // 路由跳转3
+  beforeRouteEnter (to, from, next) {
+    console.log('this.title')
+    next(vm => {
+      console.log(vm.title)
+    })
+  },
+  // 同一个路由组件 不同的参数
+  beforeRouteUpdate (to, from, next) {
+    console.log('发发发')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('this.title')
+    if (global.confirm('are you sure?')) {
+      next()
+    }
+  },
+  mounted () {
+    console.log('mounted')
+  },
   data () {
     return {
       recommends: [],
