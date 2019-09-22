@@ -2,14 +2,14 @@
   <div class="m-header">
     <div class="icon"></div>
     <h1 class="text">Chicken Music</h1>
-    <router-link tag="div" class="mine" to="/usercenter/12345">
+    <router-link tag="div" class="mine" to="/usercenter/98989">
       <i class="icon-mine"></i>
     </router-link>
-    <div style="position:relative;">
+<!--     <div style="position:relative;">
       <router-link tag="div" class="mine" to="/usercenter/123">
         <i class="icon-mine"></i>
       </router-link>
-    </div>
+    </div> -->
   </div>
 </template>
 <script type="text/ecmascript-6">

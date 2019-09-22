@@ -52,18 +52,22 @@ export default {
   },
   props: ['id'],
   beforeRouteEnter (to, from, next) {
-    console.log(from)
+    // console.log(from)
     next(vm => {
-      console.log('vm.id:' + vm.id)
+      // console.log('vm.id:' + vm.id)
     })
   },
   beforeRouteUpdate (to, from, next) {
-    console.log('fff')
+    // console.log('fff')
     next()
   },
   beforeRouteLeave (to, from, next) {
-    console.log(this.id)
+    // console.log(this.id)
     next()
+  },
+  mounted: function () {
+    console.log(this.$route)
+    console.log(this.id)
   },
   computed: {
     ...mapGetters(['playHistory', 'shoucangList'])
@@ -85,7 +89,7 @@ export default {
       this.randomPlay({
         list: this.randomArr
       })
-      alert('开始随机播放了')
+      // alert('开始随机播放了')
     },
     // 点击切换按钮，切换到对应的模块
     toggleTab (index) {

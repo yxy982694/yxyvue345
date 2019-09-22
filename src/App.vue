@@ -3,10 +3,11 @@
     <m-header></m-header>
     <tab></tab>
     <keep-alive>
-      <transition name="fade">
-        <router-view/>
+      <router-view/>
+      <!-- <transition name="fade"> -->
+        <!-- <router-view/> -->
         <!-- <router-view name="a" /> -->
-      </transition>
+      <!-- </transition> -->
     </keep-alive>
     <player></player>
     <!-- <router-view name="a" /> -->
@@ -24,6 +25,14 @@ export default {
     Player
   }
 }
+window.onhashchange = function (event) {
+  let hash = location.hash.slice(2)
+  document.body.style.backgroundColor = hash
+}
+window.history.pushState(null, null, '/book')
+window.addEventListener('popstate', function () {
+  console.log('history  popstate执行了')
+})
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">

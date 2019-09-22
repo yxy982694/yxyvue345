@@ -43,27 +43,6 @@ import { playListMixin } from 'common/js/mixin.js'
 import { mapMutations } from 'vuex'
 export default {
   mixins: [playListMixin],
-  // 路由跳转3
-  beforeRouteEnter (to, from, next) {
-    console.log('this.title')
-    next(vm => {
-      console.log(vm.title)
-    })
-  },
-  // 同一个路由组件 不同的参数
-  beforeRouteUpdate (to, from, next) {
-    console.log('发发发')
-    next()
-  },
-  beforeRouteLeave (to, from, next) {
-    console.log('this.title')
-    if (global.confirm('are you sure?')) {
-      next()
-    }
-  },
-  mounted () {
-    console.log('mounted')
-  },
   data () {
     return {
       recommends: [],
@@ -76,12 +55,53 @@ export default {
     Scroll,
     Loading
   },
+  activated: function () {
+    console.log('推荐activated')
+  },
+  deactivated: function () {
+    console.log('推荐deactivated')
+  },
+  // 路由跳转3
+  beforeRouteEnter (to, from, next) {
+    console.log('推荐beforeRouteEnter')
+    next(vm => {
+      // console.log(vm.title)
+    })
+  },
+  // 同一个路由组件 不同的参数
+  beforeRouteUpdate (to, from, next) {
+    console.log('推荐beforeRouteUpdate')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('推荐beforeRouteLeave')
+    // if (global.confirm('are you sure?')) {
+    next()
+    // }
+  },
+  beforeCreate: function () {
+    console.log('推荐beforeCreate')
+  },
   created () {
     // setTimeout(() => {
     //   this._getRecommend()
     // }, 1000)
     this._getRecommend()
     this._getDiscList()
+    console.log('推荐created')
+    console.log(this)
+  },
+  beforeMount: function () {
+    console.log('推荐beforeMount')
+  },
+  mounted () {
+    console.log('推荐mounted')
+  },
+  beforeDestory: function () {
+    console.log('推荐beforeDestory')
+  },
+  destroyed: function () {
+    console.log('推荐destroyed')
   },
   methods: {
     handlePlayList (playList) {
@@ -137,7 +157,7 @@ export default {
       }
     },
     selectItem (item) {
-      console.log('id: ' + item.id)
+      // console.log('id: ' + item.id)
       this.$router.push({
         path: `/recommend/${item.id}`
       })

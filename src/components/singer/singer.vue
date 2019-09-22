@@ -23,8 +23,49 @@ export default {
   components: {
     listView
   },
+  activated: function () {
+    console.log('歌手activated')
+  },
+  deactivated: function () {
+    console.log('歌手deactivated')
+  },
   created () {
     this._getSingerList()
+    console.log('歌手created')
+  },
+  // 路由跳转3
+  beforeRouteEnter (to, from, next) {
+    console.log('歌手beforeRouteEnter')
+    next(vm => {
+      // console.log(vm.title)
+    })
+  },
+  // 同一个路由组件 不同的参数
+  beforeRouteUpdate (to, from, next) {
+    console.log('歌手beforeRouteUpdate')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('歌手beforeRouteLeave')
+    // if (global.confirm('are you sure?')) {
+    next()
+    // }
+  },
+  beforeCreate: function () {
+    console.log('歌手beforeCreate')
+  },
+  beforeMount: function () {
+    console.log('歌手beforeMount')
+  },
+  mounted () {
+    console.log('歌手mounted')
+    console.log(this.$router)
+  },
+  beforeDestory: function () {
+    console.log('歌手beforeDestory')
+  },
+  destroyed: function () {
+    console.log('歌手destroyed')
   },
   methods: {
     handlePlayList (playList) {
@@ -36,6 +77,8 @@ export default {
       this.$router.push({
         path: `/singer/${singer.id}`
       })
+      console.log(this.$router)
+      // return false
       this.setSinger(singer)
     },
     _getSingerList () {

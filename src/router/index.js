@@ -10,7 +10,7 @@ import routes from './routers.js'
 // import TopList from 'components/top-list/top-list'
 // import UserCenter from 'components/user-center/user-center'
 Vue.use(Router)
-
+// console.log(99)
 // export default new Router({
 //   mode: 'history',
 //   routes
