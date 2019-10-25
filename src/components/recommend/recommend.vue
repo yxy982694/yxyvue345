@@ -101,7 +101,7 @@ export default {
     console.log(source.token)
     this.$axios.interceptors.request.use(function (config) {
       console.log('拦截前ff')
-      source.cancel('Operation canceled by the user.');
+      source.cancel('Operation canceled by the user.')
       console.log(config)
       return config
     })
