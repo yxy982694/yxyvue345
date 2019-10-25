@@ -18,7 +18,7 @@ Vue.use(Router)
 
 export default () => {
   return new Router({
-    mode: 'history',
+    mode: 'hash',
     routes,
     scrollBehavior (to, from, savedPosition) {
       // console.log(from)
