@@ -96,6 +96,25 @@ export default {
   },
   mounted () {
     console.log('推荐mounted')
+    var CancelToken = this.$axios.CancelToken
+    var source = CancelToken.source()
+    console.log(source.token)
+    this.$axios.interceptors.request.use(function (config) {
+      console.log('拦截前ff')
+      source.cancel('Operation canceled by the user.');
+      console.log(config)
+      return config
+    })
+    this.$axios.get('http://zjw.shanxiangjiaoyu.com/api/county?project_id=26&county_id=11', {
+      cancelToken: source.token
+    }).then(function (res) {
+      console.log(res)
+    })
+    this.$axios.interceptors.response.use(function (config) {
+      console.log('响应后')
+      console.log(config)
+      return config
+    })
   },
   beforeDestory: function () {
     console.log('推荐beforeDestory')

@@ -46,6 +46,8 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 // Vue.http.interceptors[Vue.http.interceptors.length - 1].request()
+// Content-Type默认是application/json 浏览器会首先使用 OPTIONS 方法发起一个预请求
+// axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.prototype.$axios = Axios
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
